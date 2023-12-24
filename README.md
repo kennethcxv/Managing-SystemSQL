@@ -1,7 +1,5 @@
 # Managing System SQL
-
 ## Overview
-
 Welcome to the Managing System SQL project! This system is designed to streamline and manage various tasks using SQL databases. It's an ideal solution for businesses or individuals looking for an efficient way to handle data management tasks.
 
 ## Features
