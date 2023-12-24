@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Available Books</h2>
+    <ul class="list-group">
+    {% for book in books %}
+        <li class="list-group-item">
+            {{ book.Title }} by {{ book.Author }}
+            <a href="{{ url_for('book.order_book', book_id=book.BookID) }}" class="btn btn-primary btn-sm float-right">Order</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

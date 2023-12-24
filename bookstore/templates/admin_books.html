@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Manage Books</h2>
+<ul class="list-group">
+{% for book in books %}
+    <li class="list-group-item">
+        {{ book.Title }} by {{ book.Author }}
+        <a href="{{ url_for('admin.edit_book', book_id=book.BookID) }}" class="btn btn-warning btn-sm float-right ml-2">Edit</a>
+        {% if book.OutOfPrint %}
+            <a href="{{ url_for('admin.restore_book', book_id=book.BookID) }}" class="btn btn-danger btn-sm float-right">Restore</a>
+        {% else  %}
+            <a href="{{ url_for('admin.delete_book', book_id=book.BookID) }}" class="btn btn-danger btn-sm float-right">Delete</a>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

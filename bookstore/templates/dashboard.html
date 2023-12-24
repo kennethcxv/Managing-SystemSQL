@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Dashboard - Welcome, {{ user.Name }}</h2>
+    {%  if user.UserType == 'Customer'  %}
+        <a href="{{ url_for('book.add_book') }}" class="btn btn-primary">Add Book (This shouldn't be here)</a>
+    {%  endif  %}
+    <a href="{{ url_for('user.my_orders') }}" class="btn btn-secondary">My Orders</a>
+    <a href="{{ url_for('user.profile') }}" class="btn btn-info">Profile</a>
+    <a href="{{ url_for('main.reset_password') }}" class="btn btn-dark">Reset Password</a>
+{% if user.UserType == 'Admin' %}
+    <a href="{{ url_for('book.add_book') }}" class="btn btn-primary">Add Book</a>
+    <a href="{{ url_for('admin.admin_books') }}" class="btn btn-warning">Manage Books</a>
+    <a href="{{ url_for('admin.all_orders') }}" class="btn btn-secondary">All Orders</a>
+    <a href="{{ url_for('main.all_users') }}" class="btn btn-danger">All Users</a>
+{% endif %}
+{% endblock %}

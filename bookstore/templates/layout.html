@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+<body onload="showFlashedMessagesModal()">
+
+{#If Flask has sent flashed messages, show them with a Bootstrap modal#}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+        <div class="modal fade" id="flashedMessagesModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<header class="bg-dark text-white p-4 text-center">
+    <a href="{{ url_for('main.index') }}">
+        <button type="button" class="btn btn-primary">Home</button>
+    </a>
+    {%  if 'UserID' in session %}
+        <a href="{{ url_for('main.dashboard') }}">
+            <button type="button" class="btn btn-primary">Dashboard</button>
+        </a>
+        <a href="{{ url_for('user.logout') }}">
+            <button type="button" class="btn btn-primary">Log Out</button>
+        </a>
+    {% else %}
+        <a href="{{ url_for('user.login') }}">
+            <button type="button" class="btn btn-primary">Log In</button>
+        </a>
+    {% endif %}
+    <h1>Welcome to Bookstore</h1>
+</header>
+
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+    &copy; 2023 Bookstore Inc.
+</footer>
+
+
+</body>
+</html>

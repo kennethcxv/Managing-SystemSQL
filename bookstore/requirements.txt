@@ -1,0 +1,5 @@
+flask
+werkzeug
+flask
+flask_sqlalchemy
+mysqlclient

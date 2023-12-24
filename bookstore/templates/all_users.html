@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>All Users</h2>
+<ul class="list-group">
+{% for user in users %}
+    <li class="list-group-item">
+        {{ user.Name }} ({{ user.Email }})
+        <a href="{{ url_for('main.reset_password')}}/{{  user.UserID  }}">
+            <button type="submit" class="btn btn-primary">Reset Password</button>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

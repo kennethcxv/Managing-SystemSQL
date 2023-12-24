@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>{{ book.Title }} by {{ book.Author}}</h2>
+<form action="{{ url_for('book.order_book', book_id=book.BookID) }}" method="post">
+    {% if book.Stock == 0 %}
+        <div class="form-group">
+            <label>Quantity:</label>
+                Out of stock
+        </div>
+    {% else %}
+        <div class="form-group">
+            <label>Quantity:</label>
+            <input type="number" class="form-control" name="quantity" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Order Book</button>
+        {% endif %}
+</form>
+{% endblock %}

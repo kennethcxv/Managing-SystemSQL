@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>My Orders</h2>
+<ul class="list-group">
+{% for order in orders %}
+    <li class="list-group-item">
+        Book ID: {{ order.BookID }} | Quantity: {{ order.Quantity }}
+    </li>
+{% endfor %}
+{% if not orders %}
+    <li class="list-group-item">
+        You have no orders yet.
+    </li>
+{% endif %}
+</ul>
+{% endblock %}
